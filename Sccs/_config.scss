@@ -1,0 +1,23 @@
+$dark-blue: hsl(233, 26%, 24%);
+$lime-green: hsl(136, 65%, 51%);
+$cyan: hsl(192, 70%, 51%);
+$grayish: hsl(233, 8%, 62%);
+$light-grayish: hsl(220, 16%, 96%);
+$very-Light_gray: hsl(0, 0%, 98%);
+$white: hsl(0, 0%, 100%);
+
+@function getREM($size){
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+}
+@mixin font-size($size){
+    font-size: $size;
+    font-size: getREM($size);
+    line-height: getREM($size)*1.5;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Public Sans', sans-serif;
+}
