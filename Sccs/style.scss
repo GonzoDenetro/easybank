@@ -1,22 +1,73 @@
 @import "./config";
 @import "./breakpoints";
+@import "./animation";
 .header {
     width: 100%;
-    padding: 24px;
+    padding: 17px 24px;
+    position: relative;
     &-nav {
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
+    &__menu {
+        > span {
+            display: block;
+           width: 32px;
+           height: 2px;
+           background-color: $dark-blue;
+           transform-origin: 5px 1px;
+           transition: 450ms transform ease; 
+           cursor: pointer;
+        }
+        > span:not(:last-child){
+            margin-bottom: 6px;
+        }
+    }
     &__links {
         a {
             text-decoration: none;
             color: $grayish;
+            position: relative;
+            transition: color 300ms ease-in;
             @include font-size(18px);
+            
+            &:not(last-child){
+                margin-left: 34px;
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                display: block;
+                left: 0;
+                right: 0;
+                height: 4px;
+                bottom: -30px; //Here is the key
+                background: linear-gradient(to right, $lime-green, $cyan);
+                opacity: 0;
+                transition: opacity 300ms ease-in;
+            }
+            &:hover{
+                color: $dark-blue;
+                &::before {
+                    opacity: 1;
+                }
+            }
         }
-        a:not(last-child){
-            margin-left: 34px;
+        
+    }
+    .open{
+        cursor: pointer;
+        span:first-child {
+            transform: rotate(45deg);
+        }
+        span:nth-child(2){
+            opacity: 0;
+        }
+        span:last-child {
+            transform: rotate(-45deg);
         }
     }
     &-button {
@@ -27,9 +78,25 @@
         color: $white;
         font-weight: 700;
         background: linear-gradient(to right, $lime-green, $cyan);
+        opacity: 1;
+        transition: opacity 300ms ease-in;
+        &:hover {
+            opacity: .7;
+        }
     }
 }
 
+.hamburger-button {
+    cursor: pointer;
+}
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: calc(100vh - 58px);
+    top: 90%;
+    left: 0;
+    right: 0;
+}
 //Visibility 
 .hide-for-mobile {
     @include media(mobile-tablet){

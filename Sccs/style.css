@@ -6,9 +6,46 @@
 
 /* Media Queries Mixin
 **********************/
+@keyframes fade {
+  0% {
+    height: 0px;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    height: 100vh;
+  }
+}
+@keyframes fade-out {
+  0% {
+    height: 100vh;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    height: 0px;
+  }
+}
+.fade-in {
+  background-image: linear-gradient(#2d314d, transparent);
+  animation-name: fade;
+  animation-timing-function: ease-in-out;
+  animation-duration: 750ms;
+  animation-fill-mode: forwards;
+}
+
+.fade-out {
+  background-image: linear-gradient(#2d314d, transparent);
+  animation-name: fade-out;
+  animation-timing-function: ease-in-out;
+  animation-duration: 750ms;
+  animation-fill-mode: forwards;
+}
+
 .header {
   width: 100%;
-  padding: 24px;
+  padding: 17px 24px;
+  position: relative;
 }
 .header-nav {
   width: 100%;
@@ -16,15 +53,59 @@
   justify-content: space-between;
   align-items: center;
 }
+.header__menu > span {
+  display: block;
+  width: 32px;
+  height: 2px;
+  background-color: #2d314d;
+  transform-origin: 5px 1px;
+  transition: 450ms transform ease;
+  cursor: pointer;
+}
+.header__menu > span:not(:last-child) {
+  margin-bottom: 6px;
+}
 .header__links a {
   text-decoration: none;
   color: #9698a6;
+  position: relative;
+  transition: color 300ms ease-in;
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1.6875rem;
 }
 .header__links a:not(last-child) {
   margin-left: 34px;
+}
+.header__links a::before {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+  height: 4px;
+  bottom: -30px;
+  background: linear-gradient(to right, #31d35c, #2bb7da);
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}
+.header__links a:hover {
+  color: #2d314d;
+}
+.header__links a:hover::before {
+  opacity: 1;
+}
+.header .open {
+  cursor: pointer;
+}
+.header .open span:first-child {
+  transform: rotate(45deg);
+}
+.header .open span:nth-child(2) {
+  opacity: 0;
+}
+.header .open span:last-child {
+  transform: rotate(-45deg);
 }
 .header-button {
   padding: 16px 30px;
@@ -34,9 +115,27 @@
   color: white;
   font-weight: 700;
   background: linear-gradient(to right, #31d35c, #2bb7da);
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+.header-button:hover {
+  opacity: 0.7;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 992px) {
+.hamburger-button {
+  cursor: pointer;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 58px);
+  top: 90%;
+  left: 0;
+  right: 0;
+}
+
+@media only screen and (min-width: 280px) and (max-width: 992px) {
   .hide-for-mobile {
     display: none;
   }
