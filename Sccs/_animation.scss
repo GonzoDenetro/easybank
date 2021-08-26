@@ -1,35 +1,54 @@
+@import "./breakpoints";
+
 @keyframes fade {
     0% {
         height: 0px;
         opacity: 0;
+        visibility: hidden;
     }
     100% {
         opacity: 1;
         height: 100vh;
+        visibility: visible;
     }
 }
 @keyframes fade-out {
     0% {
         height: 100vh;
         opacity: 1;
+        visibility: visible;
     }
     100% {
         opacity: 0;
         height: 0px;
+        visibility: hidden;
     }
 }
 
+.has-fade {
+    @include media(mobile-tablet){
+        visibility: hidden;
+    }
+}
+.fade-out {
+    @include media(media-tablet){
+        animation-name: fade-out;
+        animation-timing-function: ease-in-out;
+        animation-duration: 750ms;
+        animation-fill-mode: forwards;
+    }
+}
 .fade-in {
-    background-image: linear-gradient($dark-blue, transparent);
     animation-name: fade;
     animation-timing-function: ease-in-out;
     animation-duration: 750ms;
     animation-fill-mode: forwards;
 }
 .fade-out {
-    background-image: linear-gradient($dark-blue, transparent);
-    animation-name: fade-out;
-    animation-timing-function: ease-in-out;
-    animation-duration: 750ms;
-    animation-fill-mode: forwards;
+    @include media(mobile-tablet){
+        animation-name: fade-out;
+        animation-timing-function: ease-in-out;
+        animation-duration: 750ms;
+        animation-fill-mode: forwards;
+    }
 }
