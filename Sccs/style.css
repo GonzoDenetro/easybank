@@ -200,6 +200,7 @@
 .hero {
   width: 100%;
   display: flex;
+  background-color: #fafafa;
 }
 @media only screen and (min-width: 280px) and (max-width: 992px) {
   .hero {
@@ -214,18 +215,26 @@
 }
 
 .hero_image {
-  width: 100%;
+  width: 56%;
   position: relative;
   background-image: url("../assets/images/bg-intro-desktop.svg");
-  background-size: cover;
-  background-position: 0% center;
+  background-position-x: 12%;
+  background-position-y: 63%;
   background-repeat: no-repeat;
+  overflow-x: clip;
 }
 @media only screen and (min-width: 280px) and (max-width: 992px) {
   .hero_image {
+    width: 100%;
     min-height: 285px;
     background-image: url("../assets/images/bg-intro-mobile.svg");
     background-position: center;
+    background-size: cover;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .hero_image {
+    min-height: 400px;
   }
 }
 .hero_image::before {
@@ -238,16 +247,22 @@
   background-repeat: no-repeat;
   background-position: center bottom;
 }
+@media only screen and (min-width: 768px) {
+  .hero_image::before {
+    background-size: 56%;
+  }
+}
 @media only screen and (min-width: 992px) {
   .hero_image::before {
     background-size: 98%;
-    height: 626px;
+    height: 120%;
+    left: 17%;
   }
 }
 @media only screen and (min-width: 992px) {
   .hero_image {
     order: 1;
-    height: 590px;
+    height: 626px;
   }
 }
 
@@ -268,6 +283,9 @@
 @media only screen and (min-width: 992px) {
   .hero_text--title {
     text-align: left;
+    font-size: 60px;
+    font-size: 3.75rem;
+    line-height: 5.625rem;
   }
 }
 .hero_text--paragraph {
@@ -280,7 +298,9 @@
 }
 @media only screen and (min-width: 992px) {
   .hero_text {
-    padding: 0 120px;
+    width: 44%;
+    padding: 0;
+    padding-left: 100px;
   }
 }
 
@@ -293,6 +313,12 @@
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1.6875rem;
+}
+@media only screen and (min-width: 992px) {
+  .hero-button {
+    left: 18%;
+    transform: translate(0);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

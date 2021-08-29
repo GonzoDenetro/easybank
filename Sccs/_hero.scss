@@ -1,6 +1,7 @@
 .hero {
     width: 100%;
     display: flex;
+    background-color: $very-Light_gray;
     @include media(mobile-tablet){
         flex-direction: column;
     }
@@ -10,16 +11,22 @@
     }
 }
 .hero_image {
-    width: 100%;
+    width: 56%;
     position: relative;
     background-image: url("../assets/images/bg-intro-desktop.svg");
-    background-size: cover;
-    background-position: 0% center;
+    background-position-x: 12%;
+    background-position-y: 63%;
     background-repeat: no-repeat;
+    overflow-x: clip;//Puede ser una opción 
     @include media(mobile-tablet){
+        width: 100%;
         min-height: 285px;
         background-image: url("../assets/images/bg-intro-mobile.svg");
         background-position: center;
+        background-size: cover;
+    }
+    @include media(tablet){
+        min-height: 400px;
     }
     &::before {
         content: "";
@@ -30,16 +37,19 @@
         background-image: url("../assets/images/image-mockups.png");
         background-repeat: no-repeat;
         background-position: center bottom;
+        @include media(tablet){
+            background-size: 56%;
+        }
         @include media(desktop-s){
             background-size: 98%;
-            height: 626px;
-    
+            height: 120%;
+            left: 17%;
         }
 
     }
     @include media(desktop-s){
         order: 1;
-        height: 590px;
+        height: 626px;
 
     }
 }
@@ -56,6 +66,7 @@
         
         @include media(desktop-s){
             text-align: left;
+            @include font-size(60px);
         }
     }
     &--paragraph {
@@ -66,7 +77,9 @@
     }
     
     @include media(desktop-s){
-        padding: 0 120px;
+        width: 44%;
+        padding: 0;
+        padding-left: 100px;
     }
 }
 .hero-button {
@@ -76,4 +89,8 @@
     padding: 10px 20px;
     transform: translateX(-50%);
     @include font-size(18px);
+    @include media(desktop-s){
+        left: 18%;
+        transform: translate(0);
+    }
 }
