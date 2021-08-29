@@ -1,0 +1,142 @@
+//Visibility 
+.hide-for-mobile {
+    @include media(mobile-tablet){
+        display: none;
+    }
+}
+.hide-for-dektop {
+    @include media(desktop-s){
+        display: none;
+    }
+}
+.header {
+    width: 100%;
+    padding: 17px 24px;
+    position: relative;
+    background-color: $white;
+    z-index: 8;
+    &-nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    &__menu {
+        > span {
+            display: block;
+           width: 32px;
+           height: 2px;
+           background-color: $dark-blue;
+           transform-origin: 5px 1px;
+           transition: 450ms transform ease; 
+           cursor: pointer;
+        }
+        > span:not(:last-child){
+            margin-bottom: 6px;
+        }
+    }
+    &__links {
+        a {
+            text-decoration: none;
+            color: $grayish;
+            position: relative;
+            transition: color 300ms ease-in;
+            @include font-size(18px);
+            
+            @include media(desktop-s){
+                &:not(last-child){
+                    margin-left: 34px;
+                }
+            }
+
+            @include media(desktop-s) {
+                &::before {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    left: 0;
+                    right: 0;
+                    height: 4px;
+                    bottom: -30px; //Here is the key
+                    background: linear-gradient(to right, $lime-green, $cyan);
+                    opacity: 0;
+                    transition: opacity 300ms ease-in;
+                }
+                &:hover{
+                    color: $dark-blue;
+                    &::before {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        
+    }
+    .open{
+        cursor: pointer;
+        span:first-child {
+            transform: rotate(45deg);
+        }
+        span:nth-child(2){
+            opacity: 0;
+        }
+        span:last-child {
+            transform: rotate(-45deg);
+        }
+    }
+}
+.button {
+    padding: 16px 30px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    color: $white;
+    font-weight: 700;
+    background: linear-gradient(to right, $lime-green, $cyan);
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+    &:hover {
+        opacity: .7;
+    }
+}
+
+.hamburger-button {
+    cursor: pointer;
+}
+.overlay {
+    @include media(mobile-tablet){
+        position: absolute;
+        width: 100%;
+        height: calc(100vh - 58px);
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-image: linear-gradient($dark-blue, transparent);
+    }
+    @extend .hide-for-dektop;
+}
+
+.header__links {
+    @include media(mobile-tablet) {
+        width: 85%;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 120%;
+        padding: 20px 0;
+        align-items: center;
+        margin: 0 auto;
+        z-index: 9;
+        text-align: center;
+        border-radius: 4px;
+        background-color: $white;
+    }
+    .menu-link {
+        @include media(mobile-tablet){
+         padding: 10px 0;
+        }
+    }
+}
+.no-scroll {
+    overflow: hidden;
+}
