@@ -1,8 +1,46 @@
 .features {
-    &.features__grid {
+    padding: 80px 20px;
+    background-color: $light-grayish;
+    color: $grayish;
+    @include media(mobile-tablet){
+        text-align: center;
+    }
+    .features__grid {
         width: 100%;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
+        .feature_item {
+            width: 280px;
+            padding: 15px;
+            @include font-size(18px)
+        }
     }
+}
+.features--title,
+.features--paragraph {
+    @include media(desktop-s){
+        padding-left: 100px;
+    }
+}
+.features--paragraph {
+    margin-bottom: 60px;
+    @include media(desktop-s){
+        width: 700px;
+    }
+}
+.features--title {
+    margin-bottom: 20px;
+}
+.features--title,
+.feature_title{
+    font-weight: 400;
+    color: $dark-blue;
+}
+.features--title {
+    @include font-size(37px);
+}
+.feature_title {
+    padding: 20px 0;
+    @include font-size(24px)
 }
